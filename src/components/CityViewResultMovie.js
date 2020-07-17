@@ -14,18 +14,18 @@ class CityViewMovie extends Component {
     };
   }
 
-  getOMDBMovies = async () => {
+  getTMDBMovies = async () => {
+
     return fetch('/api/movies', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify({ weather: this.props.weather })
     })
       .then(raw => {
+        console.log("peepeepoopoo")
         return raw.json();
-        console.log(raw.json)
       })
       .catch(err => {
         console.log(err)
@@ -33,89 +33,59 @@ class CityViewMovie extends Component {
   };
 
   componentDidMount() {
+    console.log("component did mount")
     this.trackUris = [];
     this.getTracks()
   }
-
+  
   getTracks = () => {
-    this.getOMDBMovies()
-      .then((tracks) => {
-        this.checkSongs(tracks);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  };
+    console.log("getTracks")
+    this.getTMDBMovies()
+    .then((tracks) => {
+      this.checkSongs(tracks);
+      console.log(tracks)
 
- 
-  checkSongs = (tracks) => {
-    let tempLibraryCheck = [];
-    tracks.forEach((track) => {
-      tempLibraryCheck.push(track.id)
-    });
-    axios({
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      // url: 'http://www.omdbapi.com/?apikey=' + omdbKey + '&',
-      url: 'https://api.themoviedb.org/3/search/movie?api_key=c9543fcfc8dc493ef4a4849f6b9bb62c&query=Jack+Reacher',
-      method: 'GET',
-      params: {
-        ids: tempLibraryCheck.join(',')
-      },
     })
-      .then(resp => {
-        if (resp.status === 200) {
-          this.setState({
-            tracks: tracks,
-            trackInLibraryMap: resp.data
-          }, () => {
-            this.setState({
-              songsSet: true,
-              libraryChecked: true,
-            })
-          })
-        } else {
-          throw Error(resp.status)
-        }
-      })
-      .catch(err => {
-        this.setState({
-          tracks: tracks,
-        }, () => {
-          this.setState({
-            songsSet: true,
-          })
-        });
-        console.log(err);
-      })
+    .catch((err) => {
+      console.log(err);
+    })
+    
   };
 
+  checkSongs = (tracks) => {
+    console.log("printing tracks: " + tracks)
+    this.setState({
+      songsSet: true,
+      tracks: tracks
 
+    })}
 
+        
 
   renderMovies = () => {
     if (this.state.songsSet) {
+      console.log("this.state.songSet is true")
+   //  map of movies happens here 
       return (
         <React.Fragment>
           <div className={'recommended-songs--wrapper'}>
-            {this.state.tracks.map((result, index) => {
-              this.trackUris.push(result.uri);
-              return (<CityViewResultMovieItem
-                key={index}
-                trackData={result}
-                inLibrary={this.state.trackInLibraryMap[index]}
-                libraryChecked={this.state.libraryChecked}
-                handleSongClick={this.handleSongClick}/>);
-            })}
+          {this.state.tracks.map((result, index) => {
+
+          return (<CityViewResultMovieItem 
+            key={index} 
+            trackData={result}/>);
+          })}
           </div>
+          
+          
           <div className={'song-listing--refresh-music'}>
             <button onClick={() => {this.refreshMusic()}}>Reload</button>
           </div>
         </React.Fragment>
       );
     } else {
+      console.log("this.state.songSet is false")
+
       return (
         <div className={'loading-wrapper'}>
           <div className={'hollow-loader'}>

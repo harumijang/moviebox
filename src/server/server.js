@@ -4,38 +4,46 @@ const axios = require('axios');
 const spotifyKeys = require('../actions/ApiKeys');
 const bodyParser = require('body-parser');
 
-const spotifyGenres = helpers.spotifyGenres;
 const FeatureWeather = helpers.FeatureWeather;
-const spotifyClientSecret = spotifyKeys.spotifyClientSecret;
-const spotifyClientID = spotifyKeys.spotifyClientID;
 
 const app = express();
 const port = 5000;
 
-var spotifyAccessTokenSet = false;
-var spotifyAccessToken = null;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-const getRecommendations = (weather, token) => {
-    let features = FeatureWeather(weather.cityTemp, weather.cityCond, weather.cityCondDescription, weather.cityWind);
-    const shuffled = spotifyGenres.sort(() => .5 - Math.random());
-    let genres = shuffled.slice(0,2).join(',') ;
+// Pass in weather and token 
+const getRecommendations = () => {
+  console.log("get recs")
   
     return axios({
-      url: 'https://api.spotify.com/v1/recommendations',
+      url: 'https://api.themoviedb.org/3/search/movie',
       method: 'GET',
-      // Merge features object with query options
-      params: Object.assign(features, {seed_genres : genres, limit: 12, min_popularity: 15}),
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
+      params: {
+        api_key : 'c9543fcfc8dc493ef4a4849f6b9bb62c', 
+        query : "Jack+Reacher"}
+
     })
       .then((resp) => {
-        return resp.data.tracks;
+        return resp.data.results
       })
       .catch((err) => {
         console.log(err)
       })};
+
+
+app.post('/api/movies', (req, res) => {
+  console.log("pooooost request")
+          return getRecommendations()
+      
+        .then(resp => {
+          res.send(resp);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    });  
+
+
+app.listen(port, () => console.log(`Listening on port ${port}`));

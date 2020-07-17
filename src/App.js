@@ -20,7 +20,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <div className={'moviebox-page--wrapper'}>
-            {/* <Route path="/user/login/settoken" component={SetImplicitTokenRouted}/> */}
+          <div className={'broooo'}> "BRO"
+          </div>
+            <Route path="/"/>
             <Route exact path="/" component={CityFinderRouted}/>
             <Route exact path="/city/:gid" component={CityViewRouted}/>
           </div>

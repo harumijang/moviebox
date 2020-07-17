@@ -143,7 +143,7 @@ renderAboutWeatherBox = () => {
     return (
       <div className={'about-weatherbox--wrapper'}>
         <div className={'about-weatherbox--center'}>
-          <div className={'about-weatherbox--primary'}>City. Weather. Music</div>
+          <div className={'about-weatherbox--primary'}>Can't choose a movie? Leave it to the weather!</div>
         </div>
       </div>
     );
@@ -153,8 +153,10 @@ renderAboutWeatherBox = () => {
 render() {
     return (
       <div className={`city-finder-page--spacing-force-wrapper ${this.state.searchLockScroll}`}>
+              <h1 className='aaaaaaaa'>Find your city!</h1>
+
         <div className={`city-finder-page--wrapper ${this.state.searchShownClass}`}>
-          <div className={'city-finder--page-title'}>Weatherbox</div>
+          <div className={'city-finder--page-title'}>moviebox</div>
           {this.renderFinderTitle()}
       <div className={'city-finder-form--wrapper'}>
       <form onSubmit={this.handleSubmit} className={'searched-city--form'}>

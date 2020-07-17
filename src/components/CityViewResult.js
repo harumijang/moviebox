@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import CityViewMovie from './CityViewResultMovie'
+import CityViewResultMovieItem from './CityViewResultMovieItem'
 import {Link} from 'react-router-dom'
 
 import weatherIconResolver from './../actions/WeatherIconResolver';
@@ -30,7 +31,7 @@ class CityViewResult extends Component {
         </div>
         <div className={'city-view--weather-wrapper'}>
           <div className={'city-view--condition-left'}>
-            <span className={'city-view--wind'}>{this.props.weather.cityWind} m/s</span>
+            <span className={'city-view--wind'}>{this.props.weather.cityWind} m/s </span>
             <span className={'city-view--desc'}>
               {this.renderWeatherIcon()}{this.props.weather.cityCondDescription}
             </span>
