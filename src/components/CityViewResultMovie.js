@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 import CityViewResultMovieItem from './CityViewResultMovieItem'
 
@@ -22,6 +21,7 @@ class CityViewMovie extends Component {
         'Content-Type': 'application/json'
       },
       method: 'POST',
+      body: JSON.stringify({ weather: this.props.weather })
     })
       .then(raw => {
         console.log("peepeepoopoo")
@@ -60,6 +60,16 @@ class CityViewMovie extends Component {
 
     })}
 
+    /* Randomize array in-place using Durstenfeld shuffle algorithm */
+shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+}
+
         
 
   renderMovies = () => {
@@ -69,7 +79,8 @@ class CityViewMovie extends Component {
       return (
         <React.Fragment>
           <div className={'recommended-songs--wrapper'}>
-          {this.state.tracks.map((result, index) => {
+          {this.shuffleArray(this.state.tracks)}
+          {this.state.tracks.slice(0, 9).map((result, index) => {
 
           return (<CityViewResultMovieItem 
             key={index} 

@@ -1,8 +1,8 @@
 const helpers = require('../actions/WeatherToMovieFeature');
 const express = require('express');
 const axios = require('axios');
-const spotifyKeys = require('../actions/ApiKeys');
 const bodyParser = require('body-parser');
+const {MOVIE_KEY} = require('../actions/ApiKeys');
 
 const FeatureWeather = helpers.FeatureWeather;
 
@@ -14,17 +14,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Pass in weather and token 
-const getRecommendations = () => {
-  console.log("get recs")
+const getRecommendations = (weather) => {
+  let excludedGenres = FeatureWeather(weather.cityTemp, weather.cityCond, weather.cityCondDescription, weather.cityWind)
   
     return axios({
-      url: 'https://api.themoviedb.org/3/search/movie',
+      url: `https://api.themoviedb.org/3/discover/movie?api_key=${MOVIE_KEY}&%25language=en&vote_average.gte=7.2`,
       method: 'GET',
       params: {
-        api_key : 'c9543fcfc8dc493ef4a4849f6b9bb62c', 
-        query : "Jack+Reacher"}
+        page : Math.floor(Math.random() * 4) + 1, 
+        without_genres : excludedGenres,
+        with_original_language : 'en',
 
-    })
+      }
+
+    },
+    )
       .then((resp) => {
         return resp.data.results
       })
@@ -34,8 +38,7 @@ const getRecommendations = () => {
 
 
 app.post('/api/movies', (req, res) => {
-  console.log("pooooost request")
-          return getRecommendations()
+          return getRecommendations(req.body.weather)
       
         .then(resp => {
           res.send(resp);
