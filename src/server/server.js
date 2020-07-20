@@ -8,6 +8,7 @@ const FeatureWeather = helpers.FeatureWeather;
 
 const app = express();
 const port = 5000;
+const vote_avg = Math.floor(Math.random() * (10 - 5 + 1)) + 5
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,13 +19,12 @@ const getRecommendations = (weather) => {
   let excludedGenres = FeatureWeather(weather.cityTemp, weather.cityCond, weather.cityCondDescription, weather.cityWind)
   
     return axios({
-      url: `https://api.themoviedb.org/3/discover/movie?api_key=${MOVIE_KEY}&%25language=en&vote_average.gte=7.2`,
+      url: `https://api.themoviedb.org/3/discover/movie?api_key=${MOVIE_KEY}&%25language=en`,
       method: 'GET',
       params: {
-        page : Math.floor(Math.random() * 4) + 1, 
+        page : Math.floor(Math.random() * 25) + 1, 
         without_genres : excludedGenres,
         with_original_language : 'en',
-
       }
 
     },

@@ -20,13 +20,18 @@ class CityViewResultMovieItem extends Component {
   
   }
 
+  getYear() {
+    const str = JSON.stringify(this.props.trackData["release_date"]).substring(1,5)
+    return str;
+  }
+
   render() {
     return (
       <a className={'movie-listing--item'}
         onClick={() => this.goToJustWatch(this.props.trackData["original_title"])}>
-          <div className={'movie-listing--moviename'}>{this.props.trackData["original_title"]}</div>
-          <div className={'movie-listing--release'}>Release Date: {this.props.trackData["release_date"]}</div>
-          <div className={'song-listing--item-album-img'}>
+          <div className={'movie-listing--moviename'}>{this.props.trackData["original_title"]} ({this.getYear()})</div>
+          <div className={'movie-listing--rating'}>voter average: {this.props.trackData["vote_average"]}</div>
+          <div className={'movie-listing-img'}>
           <img src={"https://image.tmdb.org/t/p/w200/" + this.props.trackData["poster_path"]} alt={this.props.trackData["original_title"]}/>
         </div>
 

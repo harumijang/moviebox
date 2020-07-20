@@ -114,28 +114,11 @@ citySelectHandler = (gid) => {
     });
   };
 
-  // Redirect to song suggestions page for the selected city
+  // Redirect to movie suggestions page for the selected city
   renderRedirect =  () => {
     if (this.state.redirect) {
       this.props.history.push(`/city/${this.state.gid}`);
     }
-  };
-
-renderFinderTitle = () => {
-  let accessToken = localStorage.getItem('access_token');
-  if (accessToken !== 'undefined' && accessToken !== undefined && accessToken !== null && typeof accessToken !== 'undefined') {
-    return (
-      <p className={'city-finder--title'}>Find a city's tune</p>
-    )
-  } else {
-    return (
-      <p className={'city-finder--title'}>
-        <a className={'city-finder--title-connect'} href={'http://localhost:5000/api/spotify/login'}>
-          Connect to <span className={'city-finder--title-spotify'}>Spotify</span>
-        </a>
-      </p>
-    )
-  }
 };
 
 renderAboutWeatherBox = () => {
@@ -143,7 +126,7 @@ renderAboutWeatherBox = () => {
     return (
       <div className={'about-weatherbox--wrapper'}>
         <div className={'about-weatherbox--center'}>
-          <div className={'about-weatherbox--primary'}>Can't choose a movie? Leave it to the weather!</div>
+          <h3 className={'about-weatherbox--primary'}>search for your city and find movie recommendations based on the weather</h3>
         </div>
       </div>
     );
@@ -153,24 +136,24 @@ renderAboutWeatherBox = () => {
 render() {
     return (
       <div className={`city-finder-page--spacing-force-wrapper ${this.state.searchLockScroll}`}>
-              <h1 className='aaaaaaaa'>Find your city!</h1>
-
         <div className={`city-finder-page--wrapper ${this.state.searchShownClass}`}>
-          <div className={'city-finder--page-title'}>moviebox</div>
-          {this.renderFinderTitle()}
       <div className={'city-finder-form--wrapper'}>
+      <br></br>
       <form onSubmit={this.handleSubmit} className={'searched-city--form'}>
         <input type='text'
+               className={'form-control'}
+               id='input'
                value={this.state.value}
-               placeholder={'places'}
+               placeholder={'type your city'}
                onChange={this.handleChange}/>
-        <input type='submit' value={'>'}/>
+        <input className={'submit'} type='submit' value={'submit'}/>
       </form>
     </div>
     {this.state.emptySearch ? <div className={'city-finder--no-results'}>There's nothing here!</div> : ''}
     <CityFinderResultList searchResult={this.state.searchResult}
                           citySelectHandler={this.citySelectHandler}/>
     {this.renderAboutWeatherBox()}
+    <span id='cred'>© Harumi Jang</span>
     </div>
     </div>
 

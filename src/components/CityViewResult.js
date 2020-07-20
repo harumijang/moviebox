@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import CityViewMovie from './CityViewResultMovie'
-import CityViewResultMovieItem from './CityViewResultMovieItem'
 import {Link} from 'react-router-dom'
 
 import weatherIconResolver from './../actions/WeatherIconResolver';
@@ -25,21 +24,16 @@ class CityViewResult extends Component {
   render () {
     return(
       <div className={'city-view-page--wrapper'}>
+        <hr className='line'></hr>
+              <h4>here are some movies based on the weather, refresh for a new list</h4>
         <div className={'city-view--city'}>
-          <Link className={'city-view--home-link'} to='/'>{'<'}</Link>
-          <span className={'city-view--cityname'}>{this.props.weather.cityName}</span>
+          <Link className={'city-view--home-link'} to='/'>{'< return to search'}</Link>
+          <hr></hr>
+          <h2 className={'city-view--cityname'}>{this.props.weather.cityName} is currently {this.props.weather.cityTemp}°C
+          with {this.renderWeatherIcon()} {this.props.weather.cityCondDescription}
+          </h2>
         </div>
-        <div className={'city-view--weather-wrapper'}>
-          <div className={'city-view--condition-left'}>
-            <span className={'city-view--wind'}>{this.props.weather.cityWind} m/s </span>
-            <span className={'city-view--desc'}>
-              {this.renderWeatherIcon()}{this.props.weather.cityCondDescription}
-            </span>
-          </div>
-          <div className={'city-view--condition-right'}>
-            <span className={'city-view--temperature'}>{this.props.weather.cityTemp}°C</span>
-          </div>
-        </div>
+        <hr className='line'></hr>
         {this.renderMovie()}
       </div>
     )

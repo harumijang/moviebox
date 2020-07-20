@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import LoadHold from '../actions/LoadHold'
 import CityViewResult from './CityViewResult'
-// import { openWeatherMapAPPID } from '../actions/ApiKeys.js'
+import {WEATHER_KEY} from '../actions/ApiKeys.js'
 
 const ViewResultWithLoad = LoadHold(CityViewResult);
-let openWeatherMapAPPID = "d1efd9c59fdb07a865f3de678a521f5b"
 
 class CityView extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class CityView extends Component {
   }
 
   componentDidMount() {
-    let reqUrl = `https://api.openweathermap.org/data/2.5/weather?id=${this.state.gid}&APPID=${openWeatherMapAPPID}`;
+    let reqUrl = `https://api.openweathermap.org/data/2.5/weather?id=${this.state.gid}&APPID=${WEATHER_KEY}`;
     fetch(reqUrl)
       .then((raw) => {
         if (!raw.ok) throw raw.statusText;

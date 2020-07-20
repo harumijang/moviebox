@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Rowdies&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css");
+
+html,
+body {
+  height: 100%;
+  position: relative;
+  padding-left: 15px;
+}
+
+body {
+  font-family: "Rowdies";
+  color: #0072e9;
+  background-color: black;
+}
+
+.city-finder-form--wrapper {
+  /* border-bottom: solid 1px blue; */
+  margin-left: -55px;
+  margin-right: -45px;
+  /* opacity: 0; */
+  padding: 0px 55px 17px;
+  transition: opacity 0.3s ease;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 80px;
+  padding: 30px 12px;
+  font-size: 80px;
+  line-height: 1.5;
+  color: #222326;
+  background-color: black;
+  background-image: none;
+  border: 1px solid #0072e9;
+  border-radius: 0;
+}
+
+#search-container form input {
+  background-color: transparent;
+  border: none;
+  color: black;
+  height: 100%;
+  font-size: 96px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  padding-left: 0;
+  position: relative;
+  z-index: 11;
+}
+
+.logo {
+  width: 40%;
+  height: auto;
+}
+
+.searched-city--item {
+  font-size: 40px;
+}
+
+#cred {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.submit {
+  color: #0072e9;
+  font-size: 28px;
+  width: auto;
+}
+
+.line {
+  border-color: red;
+}
+
+.city-view--cityname {
+  color: white;
+}
+
+.movie-padding {
+  padding: 10px;
+}
+
+.col-sm {
+  padding-left: 10px;
+}
+
+.movie-listing--refresh-movies {
+  font-size: 40px;
+  text-align: center;
+
+}
+
+.refresh-button {
+  color: #0072e9;
+  font-size: 40px;
+}
+
+.recommended-movies--wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: 100%;
+}
+
+.recommended-movies--wrapper a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.movie-listing--item {
+  display: flex;
+  flex: 30%;
+  padding: 1rem 40px 1rem 0;
+  cursor: pointer;
+  box-sizing: content-box;
+  position: relative;
+  align-items: flex-start;
+}
+
+.movie-listing--item > .movie-listing-img {
+  transition: 0.2s ease-in-out;
+  display: block;
+  position: relative;
+}
+
+.movie-listing--item > .movie-listing-img > img {
+  max-height: 400px;
+  max-width: 400px;
+}
+
+.movie-listing--item:hover > .movie-listing-img,
+.movie-listing--item:focus > .movie-listing-img {
+  transform: translateX(15%);
+}
+
+.movie-listing--moviename {
+  font-size: 35px;
+}
+
+.movie-listing--rating {
+  padding-left: 10px;
+  padding-right: 15px;
+}

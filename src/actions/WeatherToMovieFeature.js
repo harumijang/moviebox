@@ -8,27 +8,27 @@ const FeatureWeather = (temp, cond, condDescription, wind) => {
   let dontLike = ',99,36,27,10752,37'
 
 
-// Switch on condition affecting overall music features
+// Determines what genres to leave out based on weather condition
 switch (cond) {
   case ('Clear') :
-    featureObject = '80,18,14,10749,53'
+    featureObject = '80,14,53'
     break;
   case ('Clouds') :
     switch (condDescription) {
       case ('few clouds') :
-        featureObject = '18,16,14,10749'
+        featureObject = '16,14'
         console.log('set few clouds');
         break;
       case ('scattered clouds') :
-        featureObject = '18,16,14,10749'
+        featureObject = '16,14'
         console.log('set scattered clouds');
         break;
       case ('broken clouds') :
-        featureObject = '18,16,14,10749'
+        featureObject = '16,14'
         console.log('set broken clouds');
         break;
       case ('overcast clouds') :
-        featureObject = '18,16,14,10749'
+        featureObject = '16,14'
         console.log('set overcast clouds');
         break;
     }
