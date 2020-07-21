@@ -1,8 +1,9 @@
-const helpers = require('../actions/WeatherToMovieFeature');
+const helpers = require('../src/actions/WeatherToMovieFeature');
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const {MOVIE_KEY} = require('../actions/ApiKeys');
+const {MOVIE_KEY} = require('../src/actions/ApiKeys');
+
 
 const FeatureWeather = helpers.FeatureWeather;
 
