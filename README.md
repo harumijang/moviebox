@@ -1,3 +1,12 @@
+<img src="/src/logo.png" alt="My cool logo"/>
+
+## moviebox
+moviebox is a movie recommendation app based on the weather conditions of your city. Made with React and Express.js using the OpenWeather API and TMDB API. 
+
+
+<br/><br/>
+<i>Credit to github user: sliewatc/weatherbox for inspo<i>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
