@@ -25,7 +25,7 @@ class CityViewResult extends Component {
     return(
       <div className={'city-view-page--wrapper'}>
         <hr className='line'></hr>
-              <h4>here are some movies based on the weather, refresh for a new list</h4>
+              <h3>here are some movies based on the weather, refresh for a new list</h3>
         <div className={'city-view--city'}>
           <Link className={'city-view--home-link'} to='/'>{'< return to search'}</Link>
           <hr></hr>

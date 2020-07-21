@@ -153,7 +153,9 @@ render() {
     <CityFinderResultList searchResult={this.state.searchResult}
                           citySelectHandler={this.citySelectHandler}/>
     {this.renderAboutWeatherBox()}
+    <div>
     <span id='cred'>© Harumi Jang</span>
+    </div>
     </div>
     </div>
 
